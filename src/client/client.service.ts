@@ -13,8 +13,6 @@ export const clientProvider = {
       transport: Transport.MQTT,
       options: {
         url: `mqtt://${configService.MQTT_HOST}:${configService.MQTT_PORT}`,
-        serializer: new OutboundResponseIdentitySerializer(),
-        deserializer: new InboundMessageIdentityDeserializer(),
       },
     });
   },

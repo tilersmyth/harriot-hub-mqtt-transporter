@@ -26,16 +26,6 @@ export class InputService {
     return { secret_key: topic[topic.length - 1], body: buf.toString() };
   }
 
-  async ping(context: MqttContext): Promise<void> {
-    try {
-      const payload = InputService.getPayload(context);
-      this.redis.set(`node:${payload.secret_key}`, 0, 'EX', 10);
-      this.logger.debug(`[InputService:ping] ${JSON.stringify(payload)}`);
-    } catch (error) {
-      this.logger.error('[InputService:ping]', error);
-    }
-  }
-
   async on(context: MqttContext): Promise<void> {
     try {
       const payload = InputService.getPayload(context);

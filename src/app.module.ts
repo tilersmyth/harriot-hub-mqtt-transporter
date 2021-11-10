@@ -4,11 +4,11 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { InputModule } from './input/input.module';
+import { NodeModule } from './node/node.module';
 
 @Module({
   imports: [
     ConfigModule,
-
     RedisModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (
@@ -20,6 +20,7 @@ import { InputModule } from './input/input.module';
         },
       }),
     }),
+    NodeModule,
     InputModule,
   ],
 })
